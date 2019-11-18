@@ -52,7 +52,7 @@
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <input name="description"  id="description" class="form-control" type="text" placeholder="i.e. John"  required>
+            <input name="description"  id="description" class="form-control" type="text" placeholder="i.e. dentist appt"  required>
         </div>
         <div class="form-group">
             <label for="bdate">Beginning Date</label>
