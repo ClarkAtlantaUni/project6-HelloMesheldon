@@ -51,6 +51,10 @@
             <input name="owner"  id="owner" class="form-control" type="text" placeholder="i.e. John"  required>
         </div>
         <div class="form-group">
+            <label for="description">Description</label>
+            <input name="description"  id="description" class="form-control" type="text" placeholder="i.e. John"  required>
+        </div>
+        <div class="form-group">
             <label for="bdate">Beginning Date</label>
             <input name="bdate"  id="bdate" class="form-control" type="date" required>
             <input name="btime"  id="btime" class="form-control" type="time" required>

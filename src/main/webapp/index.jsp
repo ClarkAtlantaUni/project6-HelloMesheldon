@@ -46,7 +46,7 @@
 <main role="main" class="container">
     <h1 class="mt-5">Appointment Book Application</h1>
     <p class="lead">
-        This is <a href="footnote"> application</a> is developed using core Java classes developed in projects 2 to 4 and some more ...
+        This <a href="footnote"> application</a> is developed using core Java classes developed in projects 2 to 4 and some more ...
         You will be adding more functionality to this version.
     </p>
     <div class="row">

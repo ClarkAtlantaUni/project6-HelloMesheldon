@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.Collection;
+import java.util.Date;
 
 public class AppointmentServlet extends HttpServlet {
 
@@ -51,10 +53,37 @@ public class AppointmentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        //{owner=[Jada],newappt=[Create],bdate=[2020-01-01],btime=[00:00],etime=[01:00],edate=[2020-01-01]}
+        String owner = req.getParameter("owner");
+        String bdate = req.getParameter("bdate");
+        String btime = req.getParameter("btime");
+        String edate = req.getParameter("edate");
+        String etime = req.getParameter("etime");
+        String desc = req.getParameter("description");
+        Message msg=null;
 
-        Message msg = new Message(200,
+        try {
+            Date startDate = TemplateTools.parseDate(btime,bdate);
+            Date endDate = TemplateTools.parseDate(etime,edate);
+            Appointment appointment = new Appointment();
+            appointment.setBeginTime(startDate);
+            appointment.setEndTime(endDate);
+            appointment.setDescription(desc);
+            appointmentBookManager.addNewAppointment(owner, appointment);
+            msg = new Message(200,
+                    "Appointment was created successfully<br>" + req.getParameterMap().toString()
+                    ,"");
+        } catch (ParseException e) {
+            e.printStackTrace();
+            msg = new Message(500,
+                    "Failed creating a new appt."
+                    ,"");
+        }
+
+         msg = new Message(200,
                 "Appointment was created successfully<br>" + req.getParameterMap().toString()
                     ,"");
+
         resp.getWriter().write(TemplateTools.populatePage(getServletContext(), msg));
     }
 
