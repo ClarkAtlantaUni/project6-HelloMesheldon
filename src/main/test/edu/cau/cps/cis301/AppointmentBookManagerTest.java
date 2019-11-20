@@ -3,7 +3,9 @@ package edu.cau.cps.cis301;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -56,5 +58,16 @@ class AppointmentBookManagerTest {
         appointmentBookManagerTest.loadDefaultDataStore();
         assertNotNull(appointmentBookManagerTest.getAppointmentBookOwners());
         assertNotNull(appointmentBookManagerTest.getAppointmentBookHashMap());
+    }
+
+    @Test
+    void testSimpleParser(){
+        String datetime = "2019-12-09";
+        try {
+            Date date = TemplateTools.parseDate("13:00", "2019-12-09");
+            assertNotNull(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
