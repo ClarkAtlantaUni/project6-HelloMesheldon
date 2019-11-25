@@ -9,8 +9,7 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 
 public class AppointmentServlet extends HttpServlet {
 
@@ -39,13 +38,36 @@ public class AppointmentServlet extends HttpServlet {
             int count =appointmentBookManager.getAppointmentBookOwners().size();
             StringBuilder sb = new StringBuilder();
             sb.append("There are ").append(count).append(" belonging to: ").append("<br>");
-            Collection<String> owners = appointmentBookManager.getAppointmentBookOwners().values();
+            Set<Map.Entry<UUID, String>> owners = appointmentBookManager.getAppointmentBookOwners().entrySet();
+
             sb.append("<ol>");
-            for (String owner: owners){
-                sb.append("<li><a href=\"#\">").append(owner).append("</a></li>");
+
+            for (Map.Entry e:owners) {
+                sb.append("<li><a href=\"/apptBook/appt?q="+e.getKey().toString()+"&code=101\">").append(e.getValue()).append("</a></li>");
             }
             sb.append("</ol>");
             msg = new Message(200, sb.toString(), "");
+        }else if (code.equals("101")){
+            if(query!=null && query.length()>0){
+
+                try {
+                    UUID uuid = UUID.fromString(query);
+                    AppointmentBook appointmentBook= appointmentBookManager.getAppointmentBookHashMap().get(uuid);
+                    StringBuilder sb = new StringBuilder();
+                    Collection<Appointment> appointments = appointmentBook.getAppointments();
+                    sb.append("<h2> List of Appointments for ").append(appointmentBookManager.getAppointmentBookOwners().get(uuid));
+                    sb.append("</h2>");
+                    sb.append("<pre>");
+                    for (Appointment appt: appointments) {
+                        sb.append(appt.toString()).append("\n\r");
+                    }
+                    sb.append("</pre>");
+                    msg = new Message(200, sb.toString(),"");
+
+                }catch (Exception ex){
+                    msg = new Message(500, "Invalid Owner id!","");
+                }
+            }
         }
         resp.getWriter().write(TemplateTools.populatePage(getServletContext(),msg));
     }
@@ -53,7 +75,6 @@ public class AppointmentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        //{owner=[Jada],newappt=[Create],bdate=[2020-01-01],btime=[00:00],etime=[01:00],edate=[2020-01-01]}
         String owner = req.getParameter("owner");
         String bdate = req.getParameter("bdate");
         String btime = req.getParameter("btime");

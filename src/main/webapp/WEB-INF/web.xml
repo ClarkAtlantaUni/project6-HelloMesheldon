@@ -18,7 +18,10 @@
     <servlet-name>apptmng</servlet-name>
     <servlet-class>edu.cau.cps.cis301.AppointmentServlet</servlet-class>
   </servlet>
-
+  <servlet>
+    <servlet-name>auth</servlet-name>
+    <servlet-class>edu.cau.cps.cis301.UserAuthenticationServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>jersey-serlvet</servlet-name>
@@ -28,6 +31,10 @@
   <servlet-mapping>
     <servlet-name>apptmng</servlet-name>
     <url-pattern>/appt</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>auth</servlet-name>
+    <url-pattern>/auth</url-pattern>
   </servlet-mapping>
 
 </web-app>
