@@ -7,7 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
+/**
+ * <P>This class checks user authentication</P>
+ *
+ * @author Trinity Dean
+ * @version 1.0
+ */
 public class UserAuthenticationServlet extends HttpServlet {
 
     private AppointmentBookManager appointmentBookManager;
@@ -21,7 +26,16 @@ public class UserAuthenticationServlet extends HttpServlet {
         appointmentBookManager = new AppointmentBookManager(context);
         appointmentBookManager.loadDefaultDataStore();
     }
-
+/**
+ * Sends information to formatter and displays confirmation message
+ * @param req
+ *        holds the information input
+ * @param resp
+ *         holds the <code>code</code> that tells the program what to do with that information
+ *
+ *  @throws IOException
+ *      *         Failed creating a new appt
+ */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //your code

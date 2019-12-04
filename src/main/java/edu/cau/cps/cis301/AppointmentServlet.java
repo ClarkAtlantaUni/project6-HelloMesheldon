@@ -159,7 +159,7 @@ public class AppointmentServlet extends HttpServlet {
  *        holds the information input
  *
  *  @throws IOException
- *       
+ *
  **/
     private String populatePage(Message msg) {
         String page="";

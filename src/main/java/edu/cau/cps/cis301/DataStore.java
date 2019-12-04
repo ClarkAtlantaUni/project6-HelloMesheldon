@@ -9,7 +9,12 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-
+/**
+ * <P>This class stores data in the appt book </P>
+ *
+ * @author Trinity Dean
+ * @version 1.0
+ */
 public class DataStore {
 
     private final String datafile = "apptbook";

@@ -13,9 +13,21 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * <P>This class checks user authentication</P>
+ *
+ * @author Trinity Dean
+ * @version 1.0
+ */
 public class TemplateTools {
-
+    /**
+     * Sends information to formatter and displays confirmation message
+     * @param context
+     *        holds the page format
+     * @param msg
+     *         holds the information that goes on the page
+     *
+     */
 
     public static String populatePage( ServletContext context, Message msg) {
         String page="";

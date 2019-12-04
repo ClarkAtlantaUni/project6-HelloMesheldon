@@ -2,7 +2,12 @@ package edu.cau.cps.cis301;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
+/**
+ * <P>This class creates the ability to make messages </P>
+ *
+ * @author Trinity Dean
+ * @version 1.0
+ */
 public class Message {
 
 
