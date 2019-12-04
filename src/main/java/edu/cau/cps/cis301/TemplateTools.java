@@ -61,8 +61,8 @@ public class TemplateTools {
             //valid dates are m/d/yyyy or mm/dd/yyyy or mm/d/yyyy or m/dd/yyyy
             //DateFormat datetermFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
             List<String> patterns = Arrays.asList(
-                    //"m/d/yyyy h:mm","mm/dd/yyyy h:mm", "mm/d/yyyy h:mm", "m/dd/yyyy h:m",
-                    "yyyy/mm/dd HH:mm");
+                    "m/d/yyyy h:mm","mm/dd/yyyy h:mm", "mm/d/yyyy h:mm", "m/dd/yyyy h:m",
+                    "yyyy/mm/dd HH:mm","yyy-mm-dd HH:mm");
             String datetime = dateValue +' ' +timeValue;
         SimpleDateFormat simpleDateFormat ;
         Date date =null;

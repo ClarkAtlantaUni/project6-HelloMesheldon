@@ -1,12 +1,12 @@
 {
   "appointmentBookHashMap": {
     "48d2ccac-5d38-4bdc-8a55-6e6c650607ab": {
-      "ownerName": "John",
+      "ownerName": "John Deaux",
       "appointments": [
         {
-          "description": "This is a test!",
-          "beginTime": "Jan 20, 2019, 1:53:33 PM",
-          "endTime": "Jan 20, 2019, 4:53:33 PM",
+          "description": "dentist",
+          "beginTime": "Dec 03, 2019, 3:15:00 PM",
+          "endTime": "Jan 20, 2019, 5:15:00 PM",
           "uuid": "adab1b13-a0a0-4027-950e-05ff6826260a"
         }
       ]

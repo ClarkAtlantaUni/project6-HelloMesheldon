@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -41,10 +42,16 @@ public class AppointmentServlet extends HttpServlet {
             Set<Map.Entry<UUID, String>> owners = appointmentBookManager.getAppointmentBookOwners().entrySet();
 
             sb.append("<ol>");
-
-            for (Map.Entry e:owners) {
+            HttpSession session = req.getSession();
+            String user = (String) session.getAttribute("user");
+            boolean auth = (boolean) session.getAttribute("auth");
+            if(user != null && auth){
+                for (Map.Entry e:owners) {
+                    if(e.getKey().toString().equals(user)){
                 sb.append("<li><a href=\"/apptBook/appt?q="+e.getKey().toString()+"&code=101\">").append(e.getValue()).append("</a></li>");
-            }
+                    }
+                }
+            }else{sb.append("<li> login first before accessing your appointments!").append("</li>");}
             sb.append("</ol>");
             msg = new Message(200, sb.toString(), "");
         }else if (code.equals("101")){
@@ -66,6 +73,18 @@ public class AppointmentServlet extends HttpServlet {
 
                 }catch (Exception ex){
                     msg = new Message(500, "Invalid Owner id!","");
+                }
+            }
+        }else if(code.equals("102")){
+            if(query!=null && query.length()>0){
+
+                try {
+                    StringBuilder sb = new StringBuilder();
+
+                    msg = new Message(200, sb.toString(), "");
+
+        }catch (Exception ex){
+                    msg = new Message(500, "Invalid Owner ID!", "");
                 }
             }
         }
