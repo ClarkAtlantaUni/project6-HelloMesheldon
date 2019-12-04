@@ -11,6 +11,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.*;
+/**
+ * <P>This class allows user to create and search for appointments</P>
+ *
+ * @author Trinity Dean
+ * @version 1.0
+ */
 
 public class AppointmentServlet extends HttpServlet {
 
@@ -23,6 +29,18 @@ public class AppointmentServlet extends HttpServlet {
         appointmentBookManager = new AppointmentBookManager(context);
         appointmentBookManager.loadDefaultDataStore();
     }
+    /**
+     * Tells the program what to do with the information received
+     * @param req
+     *        holds the information input
+     * @param resp
+     *         holds the <code>code</code> that tells the program what to do with that information
+     *
+     * @throws ServletException
+     *         The <code>double</code> is zero
+     *  @throws IOException
+     *      *         The Owner ID is invalid
+     */
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -90,7 +108,16 @@ public class AppointmentServlet extends HttpServlet {
         }
         resp.getWriter().write(TemplateTools.populatePage(getServletContext(),msg));
     }
-
+    /**
+     * Sends information to formatter and displays confirmation message
+     * @param req
+     *        holds the information input
+     * @param resp
+     *         holds the <code>code</code> that tells the program what to do with that information
+     *
+     *  @throws IOException
+     *      *         Failed creating a new appt
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -126,7 +153,14 @@ public class AppointmentServlet extends HttpServlet {
 
         resp.getWriter().write(TemplateTools.populatePage(getServletContext(), msg));
     }
-
+/**
+ * Sends information to screen
+ * @param msg
+ *        holds the information input
+ *
+ *  @throws IOException
+ *       
+ **/
     private String populatePage(Message msg) {
         String page="";
         try {
